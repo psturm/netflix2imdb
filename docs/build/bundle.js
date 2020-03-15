@@ -607,7 +607,6 @@ var app = (function () {
         }
         return { x: normalizedX, y: normalizedY };
     }
-    //# sourceMappingURL=util.js.map
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -744,7 +743,6 @@ var app = (function () {
         };
         return MDCFoundation;
     }());
-    //# sourceMappingURL=foundation.js.map
 
     /**
      * @license
@@ -842,7 +840,6 @@ var app = (function () {
         };
         return MDCComponent;
     }());
-    //# sourceMappingURL=component.js.map
 
     /**
      * @license
@@ -894,7 +891,6 @@ var app = (function () {
         }
         return supportsPassive_ ? { passive: true } : false;
     }
-    //# sourceMappingURL=events.js.map
 
     /**
      * @license
@@ -924,7 +920,6 @@ var app = (function () {
             || element.msMatchesSelector;
         return nativeMatches.call(element, selector);
     }
-    //# sourceMappingURL=ponyfill.js.map
 
     /**
      * @license
@@ -973,7 +968,6 @@ var app = (function () {
         PADDING: 10,
         TAP_DELAY_MS: 300,
     };
-    //# sourceMappingURL=constants.js.map
 
     /**
      * @license
@@ -1428,7 +1422,6 @@ var app = (function () {
         };
         return MDCRippleFoundation;
     }(MDCFoundation));
-    //# sourceMappingURL=foundation.js.map
 
     /**
      * @license
@@ -1534,7 +1527,6 @@ var app = (function () {
         };
         return MDCRipple;
     }(MDCComponent));
-    //# sourceMappingURL=component.js.map
 
     function Ripple(node, [ripple, props = {unbounded: false, color: null}]) {
       let instance = null;
