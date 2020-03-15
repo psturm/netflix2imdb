@@ -7,10 +7,13 @@ let parsedUrl = new URL(window.location.toString());
 let text = parsedUrl.searchParams.get('text');
 //let url = parsedUrl.searchParams.get('url');
 
-const regex = /\"(.*)\"/;
-const found = text.match(regex);
-let movieTitle = found[1];
+let movieTitle = "NONE";
 
+if (text) {
+    const regex = /\"(.*)\"/;
+    const found = text.match(regex);
+    movieTitle = found[1];
+}
 
 let openIMDB = () => {
     let movieTitleEncoded = encodeURI(movieTitle);
