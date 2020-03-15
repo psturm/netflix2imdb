@@ -1,35 +1,51 @@
 <script>
+import Button, {Label, Icon} from '@smui/button';
+
 
 let parsedUrl = new URL(window.location.toString());
-let title = parsedUrl.searchParams.get('title');
+//let title = parsedUrl.searchParams.get('title');
 let text = parsedUrl.searchParams.get('text');
-let url = parsedUrl.searchParams.get('url');
-
-
-// HACK
-text = 'Seen "Dirty Money" on Netflix yet? https://www.netflix.com/title/123123?s=a&trkid=2&t=more';
+//let url = parsedUrl.searchParams.get('url');
 
 const regex = /\"(.*)\"/;
 const found = text.match(regex);
 let movieTitle = found[1];
-console.log("regex match", found);
-console.log("movieTitle", movieTitle)
 
-var movieTitleEncoded = encodeURI(movieTitle);
 
-let imdbUrl = "https://www.imdb.com/find?q="+movieTitleEncoded+"#tt";
+let openIMDB = () => {
+    let movieTitleEncoded = encodeURI(movieTitle);
+    let imdbUrl = "https://www.imdb.com/find?q="+movieTitleEncoded+"#tt";
+    window.location = imdbUrl;
+}
+
 </script>
 
-<h3>Share</h3>
+<div class="description-box">
+    <h3 class="h3-title">Shared</h3>
+    <p class="text">{text}</p>
+</div>
 
-<div>location: {parsedUrl}</div>
+<div class="movie-box">
+    <h3 class="h3-title">Movie title</h3>
+    <p class="text">{movieTitle}</p>
+</div>
 
-<hr/>
+<br/>
+<br/>
 
-<div>Title: {title}</div>
-<div>Description: {text}</div>
-<div>URL: {url}</div>
+<Button on:click={openIMDB} variant="unelevated" style="width: 100%;">
+    <Label>
+        Search IMDB
+    </Label>
+</Button>
 
-<hr/>
 
-<a href="{imdbUrl}">go to IMDB</a> ({imdbUrl})
+<style>
+.description-box { }
+.h3-title {
+	color: #999;
+}
+.text {
+	
+}
+</style>
