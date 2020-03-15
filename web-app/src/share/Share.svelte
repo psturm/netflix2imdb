@@ -1,54 +1,27 @@
 <script>
 import Button, {Label, Icon} from '@smui/button';
+import ImdbShare from './ImdbShare.svelte';
 
 
 let parsedUrl = new URL(window.location.toString());
 //let title = parsedUrl.searchParams.get('title');
 let text = parsedUrl.searchParams.get('text');
 //let url = parsedUrl.searchParams.get('url');
-
-let movieTitle = "NONE";
-
-if (text) {
-    const regex = /\"(.*)\"/;
-    const found = text.match(regex);
-    movieTitle = found[1];
-}
-
-let openIMDB = () => {
-    let movieTitleEncoded = encodeURI(movieTitle);
-    let imdbUrl = "https://www.imdb.com/find?q="+movieTitleEncoded+"#tt";
-    window.location = imdbUrl;
-}
-
 </script>
 
-<div class="description-box">
-    <h3 class="h3-title">Shared</h3>
-    <p class="text">{text}</p>
-</div>
 
-<div class="movie-box">
-    <h3 class="h3-title">Movie title</h3>
-    <p class="text">{movieTitle}</p>
-</div>
+{#if text}
+	<ImdbShare shareText="{text}"/>
+{:else}
+	<h3>No share found!</h3>
 
-<br/>
-<br/>
-
-<Button on:click={openIMDB} variant="unelevated" style="width: 100%;">
-    <Label>
-        Search IMDB
-    </Label>
-</Button>
-
-
-<style>
-.description-box { }
-.h3-title {
-	color: #999;
-}
-.text {
-	
-}
-</style>
+    <p>
+        This app only works as a "share target" for Netflix app.        
+    </p>
+    <ol>
+            <li>Install this app to "Home screen"</li>
+            <li>Click "share" in your Netflix app</li>
+            <li>Select this app as share target</li>
+            <li>It will display the IMDB search for this movie</li>
+        </ol>
+{/if}
