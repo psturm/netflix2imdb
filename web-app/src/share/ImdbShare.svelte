@@ -1,23 +1,33 @@
 <script>
 import Button, {Label, Icon} from '@smui/button';
 
-export let shareText = null; // passed from outside
+export let debug = false;   // passed from outside
+export let shareText = "";  // passed from outside
+if (debug) {
+  shareText = 'Seen "The Equalizer" on Netflix yet?\n'
+            + 'https://www.imdb.com/title/70305892?s=a&trkid=123225&t=more'
+}
+
 let movieTitle = "";
 
+let openIMDB = () => {
+    let movieTitleEncoded = encodeURI(movieTitle);
+    window.location = "https://m.imdb.com/find?q="+movieTitleEncoded+"#tt";
+};
+
+
 if (shareText) {
+    shareText = decodeURI(shareText);
+
     const regex = /\"(.*)\"/;
     const found = shareText.match(regex);
     if (found) {
         movieTitle = found[1];
+        if (!debug) {
+          openIMDB();
+        }
     }
 }
-
-let openIMDB = () => {
-    let movieTitleEncoded = encodeURI(movieTitle);
-    let imdbUrl = "https://www.imdb.com/find?q="+movieTitleEncoded+"#tt";
-    window.location = imdbUrl;
-}
-
 </script>
 
 <div class="description-box">
@@ -46,6 +56,6 @@ let openIMDB = () => {
 	color: #999;
 }
 .text {
-	
+
 }
 </style>

@@ -2,21 +2,19 @@
 import Button, {Label, Icon} from '@smui/button';
 import ImdbShare from './ImdbShare.svelte';
 
-
 let parsedUrl = new URL(window.location.toString());
-//let title = parsedUrl.searchParams.get('title');
 let text = parsedUrl.searchParams.get('text');
-//let url = parsedUrl.searchParams.get('url');
+let debug = parsedUrl.searchParams.has('debug');
 </script>
 
 
 {#if text}
-	<ImdbShare shareText="{text}"/>
+	<ImdbShare shareText="{text}" debug="{debug}"/>
 {:else}
 	<h3>No share found!</h3>
 
     <p>
-        This app only works as a "share target" for Netflix app.        
+        This app only works as a "share target" for Netflix app.
     </p>
     <ol>
             <li>Install this app to "Home screen"</li>
